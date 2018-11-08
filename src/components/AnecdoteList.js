@@ -11,8 +11,12 @@ class AnecdoteList extends React.Component {
       this.props.store.dispatch(notifyActionCreator.emptyNotification())
     }, 5000)
   }
+
   render() {
+    const filterString = this.props.store.getState().filter
+    console.log('Filter now: ', filterString)
     const anecdotes = this.props.store.getState().anecdotes
+      .filter(anecdote=>anecdote.content.indexOf(filterString)>-1)
     return (
       <div>
         <h2>Anecdotes</h2>
@@ -23,9 +27,7 @@ class AnecdoteList extends React.Component {
             </div>
             <div>
               has {anecdote.votes}
-              <button onClick={() => 
-                this.voteAnecdote(anecdote)
-              }>
+              <button onClick={() => this.voteAnecdote(anecdote)}>
                 vote
               </button>
             </div>

@@ -1,4 +1,4 @@
-const notificationAtStart = 'Wellcome'
+const notificationAtStart = ''
 
 const initialState = notificationAtStart
 
