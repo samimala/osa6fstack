@@ -1,14 +1,14 @@
 import React from 'react'
-import {actionCreator} from '../reducers/anecdoteReducer'
-import {notifyActionCreator} from '../reducers/notificationReducer'
+import {addVote} from '../reducers/anecdoteReducer'
+import {emptyNotification, newNotification} from '../reducers/notificationReducer'
 
 class AnecdoteList extends React.Component {
 
-  voteAnecdote(anecdote) {
-    this.props.store.dispatch(actionCreator.addVote(anecdote.id))
-    this.props.store.dispatch(notifyActionCreator.newNotification('You voted: ' + anecdote.content))
+  voteAnecdote = (anecdote) => {
+    this.props.store.dispatch(addVote(anecdote.id))
+    this.props.store.dispatch(newNotification('You voted: ' + anecdote.content))
     setTimeout(() => {
-      this.props.store.dispatch(notifyActionCreator.emptyNotification())
+      this.props.store.dispatch(emptyNotification())
     }, 5000)
   }
 

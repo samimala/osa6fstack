@@ -26,7 +26,7 @@ const reducer = (store = initialState, action) => {
 
     return [...old, { ...voted, votes: voted.votes+1} ]
   }
-  if (action.type === 'CREATE') {
+  if (action.type === 'CREATEANECDOTE') {
 
     return [...store, { content: action.content, id: getId(), votes:0 }]
   }
@@ -34,20 +34,19 @@ const reducer = (store = initialState, action) => {
   return store
 }
 
-export const actionCreator = {
-  newAnecdote(anecdote) {
-    console.log('CREATING')
-    return { 
-      type: 'CREATE', 
-      content: anecdote 
-    }
-  },
-  addVote(id) {
-    console.log('VOTING')
-    return { 
-      type: 'VOTE', 
-      id: id 
-    }
+export const newAnecdote = (anecdote) => {
+  console.log('CREATING')
+  return { 
+    type: 'CREATEANECDOTE', 
+    content: anecdote 
+  }
+}
+
+export const addVote = (id) => {
+  console.log('VOTING')
+  return { 
+    type: 'VOTE', 
+    id: id 
   }
 }
 export default reducer

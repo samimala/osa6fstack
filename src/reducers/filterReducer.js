@@ -10,14 +10,13 @@ const filterReducer = (store = initialState, action) => {
   return store
 }
   
-export const filterActionCreator = {
-  newFilter(content) {
-    console.log('NEW filter')
-    return { 
-      type: 'NEWFILTER', 
-      content: content
-    }
+export const newFilter = (content) => {
+  console.log('NEW filter')
+  return { 
+    type: 'NEWFILTER', 
+    content: content
   }
 }
+
 
 export default filterReducer

@@ -12,19 +12,19 @@ const notificationReducer = (store = initialState, action) => {
   return store
 }
   
-export const notifyActionCreator = {
-  newNotification(content) {
-    console.log('NEW notification')
-    return { 
-      type: 'SHOW', 
-      content: content
-    }
-  },
-  emptyNotification() {
-    return {
-      type: 'HIDE'
-    }
+export const newNotification = (content) => {
+  console.log('NEW notification')
+  return { 
+    type: 'SHOW', 
+    content: 'You added: ' + content
   }
 }
+
+export const emptyNotification = () => {
+  return {
+    type: 'HIDE'
+  }
+}
+
 
 export default notificationReducer
