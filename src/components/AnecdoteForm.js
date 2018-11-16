@@ -8,7 +8,7 @@ class AnecdoteForm extends React.Component {
     e.preventDefault()
     const content = e.target.anecdote.value
     this.props.newAnecdote(content)
-    this.props.newNotification(content)
+    this.props.newNotification('You added: ' + content)
     setTimeout(() => {
       this.props.emptyNotification()      
     }, 5000)

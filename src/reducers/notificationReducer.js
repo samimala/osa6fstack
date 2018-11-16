@@ -16,7 +16,7 @@ export const newNotification = (content) => {
   console.log('NEW notification')
   return { 
     type: 'SHOW', 
-    content: 'You added: ' + content
+    content: content
   }
 }
 
@@ -25,6 +25,5 @@ export const emptyNotification = () => {
     type: 'HIDE'
   }
 }
-
 
 export default notificationReducer
