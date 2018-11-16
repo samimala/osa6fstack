@@ -37,6 +37,7 @@ class AnecdoteList extends React.Component {
 }
 
 const selectAnecdotes = (anecdotes, filter) => {
+  console.log('anecdotes:', anecdotes)
   return anecdotes
          .filter(anecdote=>anecdote.content.indexOf(filter)>-1)
          .sort((a, b) => b.votes - a.votes)
