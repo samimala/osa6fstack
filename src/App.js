@@ -3,8 +3,16 @@ import Notification from './components/Notification'
 import AnecdoteForm from './components/AnecdoteForm'
 import AnecdoteList from './components/AnecdoteList'
 import Filter from './components/Filter'
+import AnecdoteService from './services/anecdotes'
+import {initAnecdotes} from './reducers/anecdoteReducer'
+import {connect} from 'react-redux'
 
 class App extends React.Component {
+ 
+  componentDidMount = async () => {
+    const anecdotes = await AnecdoteService.getAll()
+    this.props.initAnecdotes(anecdotes)
+  }
 
   render() {
     return (
@@ -19,4 +27,7 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default connect (
+  null,
+  { initAnecdotes }
+ ) (App)
