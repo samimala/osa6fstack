@@ -6,6 +6,7 @@ const filterReducer = (store = initialState, action) => {
   switch(action.type) {
   case 'NEWFILTER':
     return action.content 
+  default:
   }
   return store
 }

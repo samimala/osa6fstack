@@ -8,6 +8,7 @@ const notificationReducer = (store = initialState, action) => {
     return action.content 
   case 'HIDE':
     return '' 
+  default:
   }
   return store
 }
