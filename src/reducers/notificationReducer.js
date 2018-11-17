@@ -13,12 +13,19 @@ const notificationReducer = (store = initialState, action) => {
   return store
 }
   
-export const newNotification = (content) => {
-  console.log('NEW notification')
-  return { 
-    type: 'SHOW', 
-    content: content
+
+export const notify = (content, displayTime) => {
+  console.log('New notify')
+  return (dispatch) => {
+    dispatch ({ 
+      type: 'SHOW', 
+      content: content
+    })
+    setTimeout(() => {
+      dispatch (emptyNotification())
+    }, displayTime * 1000)      
   }
+
 }
 
 export const emptyNotification = () => {

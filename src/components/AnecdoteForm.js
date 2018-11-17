@@ -1,6 +1,6 @@
 import React from 'react'
 import {newAnecdote} from '../reducers/anecdoteReducer'
-import {newNotification, emptyNotification} from '../reducers/notificationReducer'
+import {notify, emptyNotification} from '../reducers/notificationReducer'
 import {connect} from 'react-redux'
 
 class AnecdoteForm extends React.Component {
@@ -8,11 +8,8 @@ class AnecdoteForm extends React.Component {
     e.preventDefault()
     const content = e.target.anecdote.value
     e.target.anecdote.value = ''
-    this.props.newNotification('You added: ' + content)
     this.props.newAnecdote(content)
-    setTimeout(() => {
-      this.props.emptyNotification()      
-    }, 5000)
+    this.props.notify(`You added: '${content}'`, 5)
   }
  
   render() {
@@ -30,7 +27,7 @@ class AnecdoteForm extends React.Component {
 
 const mapDispatchToProps = {
   newAnecdote,
-  newNotification,
+  notify,
   emptyNotification 
 }
 
