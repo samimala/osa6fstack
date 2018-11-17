@@ -7,7 +7,7 @@ const reducer = (store = [], action) => {
     return [...old, { ...voted, votes: voted.votes+1} ]
   }
   if (action.type==='CREATEANECDOTE') { 
-    return [...store, action.con]
+    return [...store, action.content]
   }
   if (action.type==='INIT_ANECDOTES') {
     return action.content
@@ -17,17 +17,28 @@ const reducer = (store = [], action) => {
 
 export const newAnecdote = (anecdote) => {
   console.log('CREATING')
-  return { 
-    type: 'CREATEANECDOTE', 
-    content: anecdote 
+  return async (dispatch) => {
+    const savedAnecdote = await anecdoteService.createNew(anecdote)
+    console.log('Saved:', savedAnecdote)
+    dispatch({ 
+      type: 'CREATEANECDOTE', 
+      content: savedAnecdote 
+    })  
   }
 }
 
-export const addVote = (id) => {
+export const addVote = (anecdote) => {
   console.log('VOTING')
-  return { 
-    type: 'VOTE', 
-    id: id 
+
+  return async (dispatch) => {
+    const votedAnecdote = {...anecdote, votes: anecdote.votes+1}
+    console.log('Voted:', votedAnecdote)
+    console.log('votedAnecdote', votedAnecdote)
+    const response = await anecdoteService.update(votedAnecdote)
+    dispatch ({ 
+      type: 'VOTE', 
+      id: response.id 
+    })  
   }
 }
 
