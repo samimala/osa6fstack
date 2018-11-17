@@ -9,9 +9,8 @@ import {connect} from 'react-redux'
 
 class App extends React.Component {
  
-  componentDidMount = async () => {
-    const anecdotes = await AnecdoteService.getAll()
-    this.props.initAnecdotes(anecdotes)
+  componentDidMount = () => {
+    this.props.initAnecdotes()
   }
 
   render() {
@@ -30,4 +29,4 @@ class App extends React.Component {
 export default connect (
   null,
   { initAnecdotes }
- ) (App)
+) (App)
